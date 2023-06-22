@@ -1,0 +1,71 @@
+
+custom:
+  Client:
+      type: object
+      properties:
+        
+        name:
+         type: string
+         example: "TOB"
+        email:
+          type: string
+          format: email
+          example: "tob@gmail.com"
+        address:
+         type: string
+         example: "king brooklyn"
+        phone: 
+          type: string
+          example: "+918989898989"
+        state:
+          type: string
+          example: "New York"
+        gstin:
+        
+          type: string
+          example: "xyz"
+        active:
+          type: boolean
+          example: true
+        
+        
+
+
+  getone_response_body:
+   allOf:
+    - $ref: '#/custom/Client'
+    - type: object
+      properties:
+        primary_user_id:
+           type: integer
+           example: 15
+        created_at:
+           type: string
+           format: date-time
+           example: "2017-07-21T17:32:28Z"
+           
+        updated_at:
+           type: string
+           format: date-time
+           example: "2017-07-21T17:32:28Z"
+        db_ssl:
+          type: boolean
+          example: false
+        id: 
+          type: integer
+          example: 3
+        
+  update_request_body:
+    allOf:
+     - $ref: '#/custom/getone_response_body'
+     - type: object
+       properties:
+         rollback:
+           type: boolean
+           example: false
+         migrate:
+           type: boolean
+           example: false
+           
+
+        

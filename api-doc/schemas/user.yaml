@@ -1,0 +1,68 @@
+components:
+   schemas:
+      Users:
+        properties:
+           name:
+               type: string
+               example: "jhone "
+           email:
+               type: string
+               example: "jhone@gmail.com"
+           password:
+               type: string
+               example: "P@ssW0rd"
+           is_admin:
+               type: boolean
+               example: false
+           active:
+               type: boolean
+               example: true
+   requestBodies:
+      UsersUpdate:
+        content:
+           application/json:
+              schema:
+                 allOf:
+                    - $ref: "../main.yaml#/components/schemas/Users"
+                    - type: object
+                      properties:
+                            id:
+                              type: integer
+                              example: 2
+
+   responses:
+      UsersResponse:
+         content:
+           application/json:
+              schema:
+                 allOf:
+                    - $ref: "../main.yaml#/components/schemas/Users"
+                    - type: object
+                      properties:
+                            id:
+                              type: integer
+                              example: 2
+      UsersResponseArray:
+          description: "operation success"
+          content:
+             application/json:
+                schema:
+                  allOf:
+                    - $ref: "../main.yaml#/components/schemas/Users"
+                    - type: object
+                      properties:
+                           id: 
+                                type: integer
+                                example: 2
+                           created_at:
+                                type: string
+                                format: date-time
+                                example: "2017-07-21T17:32:28Z"
+                           updated_at:
+                                type: string
+                                format: date-time
+                                example: "2017-07-21T17:32:28Z"
+                           email_verified_at:
+                               type: string
+                               format: date-time
+                               example: "2017-07-21T17:32:28Z"

@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+   #PHP Service
+   tretailapiworkernode:
+     build:
+      context: .
+      dockerfile: Dockerfile-worker
+     image: fuzonmedia/tretailapi-worker
+     restart: unless-stopped
+     volumes:
+       - ./app/:/var/www/html
+       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+     working_dir: /var/www/html
+     container_name: tretailapi-worker-node
+     networks:
+       - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external: true
+
+
+

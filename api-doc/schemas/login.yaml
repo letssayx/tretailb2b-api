@@ -1,0 +1,45 @@
+components:
+  schemas:
+     Login:
+       type: object
+       properties:
+           status:
+              type: string
+              example: "success"
+           token_type:
+              type: string
+              example: "session"
+           expires_in:
+              type: integer
+              example: 86400
+           default_client_id:
+              type: integer
+              example: 3
+           output_roles:
+              type: object
+              properties:
+                stores:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                       permissions:
+                            $ref: "../main.yaml#/components/schemas/Permissions"
+                       client: 
+                          type: integer
+                          example: "Meerkat Apparels"
+                       id: 
+                          type: integer
+                          example: 9
+                       is_admin: 
+                          type: boolean 
+                          example: true
+                others:
+                  type: object
+                  properties:
+                      is_admin:
+                        type: boolean
+                        example: true
+                      is_super:
+                        type: boolean
+                        example: true

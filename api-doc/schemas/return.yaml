@@ -1,0 +1,99 @@
+components:
+  schemas:
+    Returns:
+      type: object
+      properties:
+        id:
+         type: integer
+         example: 1
+        initiate_date:
+            type: string
+            example: "2020-12-21"
+        inventory_adjusted_date:
+            type: string
+            example: "2021-01-22"
+        is_good_inventory:
+           type: boolean
+           example: true
+        is_inventory_adjusted:
+           example: false
+        is_received:
+           type: boolean
+           example: 1
+        lineitems:
+           type: object
+           properties:
+             item_id:
+              type: integer
+              example: 1043
+             lineitem_id:
+                type: integer
+                example: null
+             quantity:
+                 type: integer
+                 example: 2
+             sku:
+                 type: string
+                 example: "MEE-NS-0060-XL"
+        notes:
+             type: string
+             example: null
+        order_date:
+             type: string
+             example: "2020-12-21 05:30:00"
+        order_ref:
+             type: string
+             example: "102-0785487-8031500"
+        quantity:
+             type: integer
+             example: 1
+        reason:
+             type: string
+             example: "Principal"
+        received_date:
+             type: string
+             example: "2021-01-22"
+        type:
+             type: string
+             example: "return"
+  responses:
+      ReturnsResponse:
+        description: operation success
+        content:
+          application/json:
+             schema:
+               allOf:
+                 - $ref: "../main.yaml#/components/schemas/Returns"
+                 - type: object
+                   properties: 
+                      status:
+                          type: string
+                          example: "success"
+                      quantity_received: 
+                          type: integer
+                          example: 3
+      ReturnsResponseArray:
+          description: operation success
+          content:
+            application/json:
+               schema:
+                  type: array
+                  items:
+                      $ref: "../main.yaml#/components/schemas/Returns"
+  requestBodies:
+      ReturnsUpdate:
+        content:
+          application/json:
+             schema:
+               allOf:
+                 - $ref: "../main.yaml#/components/schemas/Returns"
+                 - type: object
+                   properties: 
+                      status:
+                          type: string
+                          example: "success"
+                      quantity_received: 
+                          type: integer
+                          example: 3
+                          
+          

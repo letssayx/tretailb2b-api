@@ -1,0 +1,85 @@
+no_params:
+  delete:
+    summary: delete a subcategory
+    description: pass the id of the subcategory
+    tags:
+     - Subcategories
+    parameters:
+       - name: subcategoryid
+         in: path
+         description: id of the subcategory
+         schema:
+            type: integer
+            example: 2
+         required: true
+    responses:
+      "200":
+        description: operation success
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: "success"
+                message:
+                  type: string
+                  example: "Successfully SubCategory Deleted"
+      "401":
+          $ref: "../main.yaml#/components/responses/Unauthorize"
+       
+
+params:
+   post:
+     summary: add subcategory
+     description: pass subcategory data with post request
+     tags:
+      - Subcategories
+     requestBody:  
+       content:
+         application/json:
+           schema:
+              $ref: "../main.yaml#/components/schemas/Subcategory"
+     responses:
+        "201":
+           $ref: "../main.yaml#/components/responses/OptionsResponse"
+        "401":
+          $ref: "../main.yaml#/components/responses/Unauthorize"
+        "405":
+          $ref: "../main.yaml#/components/responses/Field_Missing" 
+    
+
+   get:
+     summary: Filter by category id
+     description: Pass category id and range
+     tags:
+      - Subcategories
+     parameters:
+         - name: filter
+           description: pass category id
+           in: query
+           schema:
+             type: string
+             example:  '{"category_id":16}'
+         - $ref: "../main.yaml#/components/parameters/Range"
+         - $ref: "../main.yaml#/components/parameters/Sort"
+     responses:
+         "200":
+           description: operation success
+           content:
+             application/json:
+               schema:
+                 type: array
+                 items:
+                      $ref: "../main.yaml#/components/responses/SubcategoryByCategoryId"
+      
+
+         "401":
+          $ref: "../main.yaml#/components/responses/Unauthorize"
+    
+    
+       
+    
+
+

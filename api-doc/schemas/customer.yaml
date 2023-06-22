@@ -1,0 +1,35 @@
+components:
+   schemas:
+      Customers:
+         type: object
+         properties:
+           active:
+             type: boolean
+             example: true
+           address:
+             type: array
+             items:
+               type: object
+               properties:
+                  key:
+                     type: string
+                     example: "pin"
+                  value: 
+                     type: string
+                     example: "5001552"
+           email:
+             type: string
+             example: "example@gmail.com"
+           gstin:
+              type: string
+              example: "22AAAAA0000A1"
+           name:
+             type: string
+             example: "jhone"
+           phone:
+              type: string
+              example: "+919555577880"
+           state:
+             type: string
+             example: "Bihar"
+        

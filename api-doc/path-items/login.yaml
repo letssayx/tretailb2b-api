@@ -1,0 +1,30 @@
+params:
+   post:
+     tags:
+       - Auth
+     description: login user
+     summary: login with user
+     requestBody:
+        required: true
+        description: pass username and password
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: 
+                email:
+                  type: string
+                  example: "jhondoe"
+                password:
+                  type: string
+                  example: "passw0rd"
+                      
+     responses:
+       "200":
+          description: "login success"
+          content:
+             application/json:
+                schema:
+                  $ref: "../main.yaml#/components/schemas/Login"
+       "400":
+          description: invalid user

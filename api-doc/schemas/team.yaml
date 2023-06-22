@@ -1,0 +1,72 @@
+components:
+  schemas:
+    Teams:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "jhon doe"
+        email:
+           type: string
+           example: "jhondoe@gmail.com"
+        orders:
+           type: string
+           example: "POST"
+        products:
+           type: string
+           example: "GET"
+        settings:
+           type: string
+           example: "none"
+  requestBodies:
+     TeamsUpdate:
+        content:
+          application/json:
+            schema:
+               allOf:
+                 - $ref: "../main.yaml#/components/schemas/Teams"
+                 - type: object
+                   properties:
+                     id:
+                         type: integer
+                         example: 2
+                     status:
+                         type: string
+                         example: "success"
+            
+  responses:
+     TeamsResponse:
+        description: operation success
+        content:
+           application/json:
+              schema:
+                 allOf:
+                 - $ref: "../main.yaml#/components/schemas/Teams"
+                 - type: object
+                   properties:
+                     id:
+                         type: integer
+                         example: 2
+                     status:
+                         type: string
+                         example: "success" 
+         
+     TeamsResponseArray:
+        description: operation success
+        content:
+           application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                     id:
+                       type: integer
+                       example: 2
+                     name:
+                       type: string
+                       example: "jhon doe"
+                     email:
+                        type: string
+                        example: "jhondoe@gmail.com"
+                       
+                    

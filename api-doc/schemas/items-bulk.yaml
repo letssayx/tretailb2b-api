@@ -1,0 +1,296 @@
+components:
+   schemas:
+      ItemsBulk:
+         type: object
+         properties:
+           active:
+              type: boolean
+              example: true
+           id:
+              type: string
+              example: "298"
+           status:
+              type: string
+              example: "success"
+           items:
+             type: array
+             items:
+               type: object
+               properties:
+                  attributes:
+                     type: array
+                     items:
+                      type: object
+                      properties:
+                          key:
+                             type: string
+                             example: "size"
+                          value:
+                             type: string
+                             example: "XXL"
+                  breadth:
+                     type: string
+                     example: "9.8"
+                  dimension_unit:
+                     type: string
+                     example: "inches"
+                  height:
+                     type: string
+                     example: "3.9"
+                  inventory_location:
+                     type: string
+                     example: "New Town"
+                  length:
+                     type: string
+                     example: "1.9"
+                  mrp:
+                     type: string
+                     example: "1299"
+                  price:
+                     type: string
+                     example: "999"
+                  quantity:
+                     type: string
+                     example: "1500"
+                  sku:
+                     type: string
+                     example: "BD-KRTAL39"
+                  variants:
+                     type: array
+                     items:
+                        type: object
+                        properties:
+                          key:
+                             type: string
+                             example: "color"
+                          value:
+                             type: string
+                             example: "Rose red"
+                  weight:
+                      type: string
+                      example: ".881"
+                  weight_unit:
+                      type: string
+                      example: "pounds"
+                  active: 
+                     type: boolean
+                     example: false
+   requestBodies:
+       ItemsBulkUpdate:
+          description: operation success
+          content:
+            application/json:
+                schema:
+                     type: object
+                     properties:
+                       active:
+                          type: boolean
+                          example: true
+                       id:
+                          type: string
+                          example: "298"
+                       status:
+                          type: string
+                          example: "success"
+                       items:
+                         type: array
+                         items:
+                           type: object
+                           properties:
+                              id:
+                                 type: integer
+                                 example: 1850
+                              attributes:
+                                 type: array
+                                 items:
+                                  type: object
+                                  properties:
+                                      key:
+                                         type: string
+                                         example: "size"
+                                      value:
+                                         type: string
+                                         example: "XXL"
+                              breadth:
+                                 type: string
+                                 example: "9.8"
+                              dimension_unit:
+                                 type: string
+                                 example: "inches"
+                              height:
+                                 type: string
+                                 example: "3.9"
+                              inventory_location:
+                                 type: string
+                                 example: "New Town"
+                              length:
+                                 type: string
+                                 example: "1.9"
+                              mrp:
+                                 type: string
+                                 example: "1299"
+                              price:
+                                 type: string
+                                 example: "999"
+                              quantity:
+                                 type: string
+                                 example: "1500"
+                              sku:
+                                 type: string
+                                 example: "BD-KRTAL39"
+                              variants:
+                                 type: array
+                                 items:
+                                    type: object
+                                    properties:
+                                      key:
+                                         type: string
+                                         example: "color"
+                                      value:
+                                         type: string
+                                         example: "Rose red"
+                              weight:
+                                  type: string
+                                  example: ".881"
+                              weight_unit:
+                                  type: string
+                                  example: "pounds"
+                              product_brand_id:
+                                  type: integer
+                                  example: 5
+                              product_brand_name:
+                                  type: string
+                                  example: "Boring Dress"
+                              product_category_id:
+                                   type: integer
+                                   example: 4
+                              product_category_name:
+                                   type: string
+                                   example: "Apparel"
+                              product_id:
+                                   type: integer
+                                   example: 298
+                              product_name:
+                                   type: string
+                                   example: "Pajama"
+                              product_sku:
+                                   type: string
+                                   example: "MEE-SS-0089"
+                              product_subcategory_id:
+                                    type: integer
+                                    example: 5
+                              product_subcategory_name:
+                                    type: string
+                                    example: "Nightwear"
+   responses:
+      ItemsBulkResponse:
+        description: operation success
+        content:
+              application/json:
+                  schema:
+                       type: object
+                       properties:
+                         id:
+                            type: string
+                            example: "298"
+                         status:
+                            type: string
+                            example: "success"
+                         items:
+                           type: array
+                           items:
+                             type: object
+                             properties:
+                                id:
+                                   type: integer
+                                   example: 1850
+                                active:
+                                   type: boolean
+                                   example: true
+                                attributes:
+                                   type: array
+                                   items:
+                                    type: object
+                                    properties:
+                                        key:
+                                           type: string
+                                           example: "size"
+                                        value:
+                                           type: string
+                                           example: "XXL"
+                                breadth:
+                                   type: string
+                                   example: "9.8"
+                                dimension_unit:
+                                   type: string
+                                   example: "inches"
+                                height:
+                                   type: string
+                                   example: "3.9"
+                                inventory_location:
+                                   type: string
+                                   example: "New Town"
+                                length:
+                                   type: string
+                                   example: "1.9"
+                                mrp:
+                                   type: string
+                                   example: "1299"
+                                price:
+                                   type: string
+                                   example: "999"
+                                quantity:
+                                   type: string
+                                   example: "1500"
+                                sku:
+                                   type: string
+                                   example: "BD-KRTAL39"
+                                variants:
+                                   type: array
+                                   items:
+                                      type: object
+                                      properties:
+                                        key:
+                                           type: string
+                                           example: "color"
+                                        value:
+                                           type: string
+                                           example: "Rose red"
+                                weight:
+                                    type: string
+                                    example: ".881"
+                                weight_unit:
+                                    type: string
+                                    example: "pounds"
+                                product_brand_id:
+                                    type: integer
+                                    example: 5
+                                product_brand_name:
+                                    type: string
+                                    example: "Boring Dress"
+                                product_category_id:
+                                     type: integer
+                                     example: 4
+                                product_category_name:
+                                     type: string
+                                     example: "Apparel"
+                                product_id:
+                                     type: integer
+                                     example: 298
+                                product_name:
+                                     type: string
+                                     example: "Pajama"
+                                product_sku:
+                                     type: string
+                                     example: "MEE-SS-0089"
+                                product_subcategory_id:
+                                      type: integer
+                                      example: 5
+                                product_subcategory_name:
+                                      type: string
+                                      example: "Nightwear"
+                                  
+                            
+                  
+                    
+                     

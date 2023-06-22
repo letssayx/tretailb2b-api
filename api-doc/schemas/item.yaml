@@ -1,0 +1,264 @@
+components:
+   schemas:
+     Items:
+       properties:
+          breadth:
+             type: string
+             example: "150"
+          dimension_unit:
+              type: string
+              enum: ["cm","inches"]
+              example: "cm"
+          height:
+              type: string
+              example: "150"
+          inventory_location:
+              type: string
+              example: "Behala"
+          length:
+              type: string
+              example: "150"
+          mrp:
+             type: string
+             example: "5000"
+          price:
+             type: string
+             example: "6000"
+          quantity:
+             type: string
+             example: "209"
+          sku: 
+             type: string
+             example: "BD-KRTAL39"        
+          variants:
+            type: array
+            items:
+               type: object
+               properties:
+                 key:
+                   type: string
+                   example: "colour"
+                 value:
+                   type: string
+                   example: "blue"
+          weight:
+             type: string
+             example: "150"
+          weight_unit:
+             type: string
+             enum: ["g","kg","pounds"]
+             example: "g"
+          attributes:
+             type: array
+             items:
+               type: object
+               properties:
+                 key:
+                   type: string
+                   example: "size"
+                 value:
+                   type: string
+                   example: "xxl"
+     ItemsRelation:
+       allOf:
+          - $ref: "../main.yaml#/components/schemas/Items" 
+          - type: object
+            properties:
+              product_brand_id:
+                 type: integer
+                 example: 3
+              product_brand_name:
+                 type: string
+                 example: "Meerkat"
+              product_category_id:
+                 type: integer
+                 example: 4
+              product_category_name:
+                 type: string
+                 example: "Apparel"
+              product_id:
+                  example: 298
+                  type: integer
+              product_name:
+                 type: string
+                 example: "Kurta Pajama"
+              product_sku:
+                  type: string
+                  example: "B08Y2P6C8H"
+              product_subcategory_id:
+                 type: integer
+                 example: 5
+              product_subcategory_name:
+                  type: string
+                  example: "Nightwear"
+   requestBodies:
+      ItemsUpdatePrice:
+         content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "../main.yaml#/components/schemas/Items" 
+                  - type: object
+                    properties:
+                       product_brand_id:
+                          type: integer
+                          example: 3
+                       product_brand_name:
+                          type: string
+                          example: "Meerkat"
+                       product_category_id:
+                          type: integer
+                          example: 4
+                       product_category_name:
+                          type: string
+                          example: "Apparel"
+                       product_id:
+                           example: 298
+                           type: integer
+                       product_name:
+                          type: string
+                          example: "Kurta Pajama"
+                       product_sku:
+                           type: string
+                           example: "B08Y2P6C8H"
+                       product_subcategory_id:
+                          type: integer
+                          example: 5
+                       product_subcategory_name:
+                           type: string
+                           example: "Nightwear"
+             
+                       id:
+                         type: integer
+                         example: 1855
+                       product_tax_rate:
+                         type: string
+                         example: 5
+                       product_name_with_sku:
+                         type: string
+                         example: "BD-KRTAL39"
+                       product_hsn_code:
+                         type: string
+                         example: "BD-KRTAL39"
+                       thumbnail_image:
+                         type: string
+                         example: "https://storage.googleapis.com/tretail-products/ABC Pvt Ltd/bcNnn7zhHByo7LH/BkfvOZoJqz-thumbnail.jpeg"
+                       status:
+                         type: string
+                         example: "success"
+                        
+   responses:
+      ItemsResponse:
+        content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "../main.yaml#/components/schemas/ItemsRelation"
+                  - type: object
+                    properties:
+                       id:
+                         type: integer
+                         example: 1855
+                       product_tax_rate:
+                         type: string
+                         example: 5
+                       product_name_with_sku:
+                         type: string
+                         example: "BD-KRTAL39"
+                       product_hsn_code:
+                         type: string
+                         example: "BD-KRTAL39"
+                       thumbnail_image:
+                         type: string
+                         example: "https://storage.googleapis.com/tretail-products/ABC Pvt Ltd/bcNnn7zhHByo7LH/BkfvOZoJqz-thumbnail.jpeg"
+                       status:
+                         type: string
+                         example: "success"
+                       active:
+                         type: boolean
+                         examle: true
+      ItemsResponseArray:
+         content:
+            application/json:
+              schema:
+                oneOf:
+                 - type: array
+                   items:
+                     allOf:
+                       - $ref: "../main.yaml#/components/schemas/ItemsRelation"
+                       - type: object
+                         properties:
+                            id:
+                              type: integer
+                              example: 1855
+                            product_name_with_sku:
+                              type: string
+                              example: "BD-KRTAL39"
+                            thumbnail_image:
+                              type: string
+                              example: "https://storage.googleapis.com/tretail-products/ABC Pvt Ltd/bcNnn7zhHByo7LH/BkfvOZoJqz-thumbnail.jpeg"
+                            status:
+                              type: string
+                              example: "success"
+                 - type: array
+                   items:
+                      type: object
+                      properties:
+                         id:
+                           type: integer
+                           example: 1850
+                         product_id:
+                            type: integer
+                            example: 298
+                         sku:
+                            type: string
+                            example: "BD-KRTAL39"
+                         mrp:
+                            type: integer
+                            example: 1999
+                         price:
+                            type: integer
+                            example: 1500
+                         dimentions:
+                             type: string
+                             example: "25*10*5"
+                         weight:
+                            type: string
+                            example: ".881"
+                         quantity:
+                            type: integer
+                            example: 1900
+                         variants:
+                            type: string
+                            example: '[{\"key\": \"color\", \"value\": \"blue\"}]'
+                         attributes:
+                            type: string
+                            example: '[{\"key\": \"size\", \"value\": \"XXL\"}]'
+                         active:
+                            type: boolean
+                            example: true
+                         created_at:
+                            type: string
+                            format: date-time
+                            example: "2021-04-22T15:17:56.000000Z"
+                         updated_at:
+                            type: string
+                            format: date-time
+                            example: "2021-04-22T15:30:58.000000Z"
+                         dimension_unit:
+                             type: string
+                             example: "cm"
+                         weight_unit:
+                             type: string
+                             example: "pounds"
+                         asin:
+                             type: string
+                             nullable: true
+                             example: null
+                         inventory_location:
+                             type: string
+                             examle: "Barackpore"      
+                 
+                                   
+                                   
+                  

@@ -1,0 +1,35 @@
+components:
+   schemas:
+     Subcategory:
+        type: object
+        properties:
+          category_id:
+             type: integer
+             example: 16
+          name:
+             type: string
+             example: "Jeans"
+   responses:
+      SubcategoryByCategoryId:
+        type: object
+        properties:
+           id:
+              type: integer
+              example: 16
+           name:
+              type: string
+              example: "Jeans"
+           parent_category_id:
+              type: integer
+              example: 2
+           amazon_field_mapping:
+           flipcart_field_mapping:
+           created_at:
+              format: date-time
+              type: string
+              example: "2020-05-27T13:55:05.000000Z"
+           updated_at:
+              type: string
+              format: date-time
+              example: "2020-05-27T13:55:05.000000Z"
+        

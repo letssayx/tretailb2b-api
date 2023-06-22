@@ -1,0 +1,76 @@
+components:
+  schemas:
+    Options:
+      properties:
+        id: 
+          type: integer
+          example: 2
+        name:
+          type: string
+          example: "Levi's | Levi Strauss India Pvt. Ltd | India | Clothing"
+        created_at:
+          type: string
+          format: date-time
+          example: "2017-07-21T17:32:28Z"
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          example: "2017-07-21T17:32:28Z"
+          readOnly: true
+  requestBodies:
+       OptionsRequest:
+         content:
+           application/json:
+             schema:
+               type: object
+               properties:
+                 id: 
+                   type: integer
+                   example: 2               
+                 name:
+                    type: string
+                    example: "Levi's | Levi Strauss India Pvt. Ltd |India | Clothing" 
+                 status:
+                   type: string
+                   example: "success"
+    
+  responses:
+      OptionsStatusResponse:
+         description: operation success
+         content:
+           application/json:
+              schema:
+                properties:          
+                  status:
+                     type: string
+                     example: "success"
+                  message:
+                     type: string
+                     example: "item successfuly .."
+      OptionsResponse:
+          description: operation success
+          content:
+           application/json:
+             schema:
+               type: object
+               properties:
+                 id: 
+                   type: integer
+                   example: 2               
+                 name:
+                    type: string
+                    example: "Levi's | Levi Strauss India Pvt. Ltd |India | Clothing" 
+                 status:
+                   type: string
+                   example: "success"
+
+
+                  
+              
+                
+         
+           
+     
+            
+      

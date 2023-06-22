@@ -1,0 +1,267 @@
+---
+openapi: 3.0.0
+
+info:
+  title: Tretail Api
+  description: Ecommmerce Api
+  version: 1.0.0
+  contact: example@email.com
+servers: 
+  - description: Api url
+  - url: "https://api.tretailb2b.com/api"
+
+tags:
+  - name: Auth
+    description : Authenticate user
+  - name : User 
+    description: Add, edit and delete user
+  - name: Client
+    description: Add edit and delete client
+  - name: Requests
+    description: Manage requestes 
+  - name: Brands
+    description: Manage brands 
+  - name: Manufacturers
+    description: Manage manufacturers 
+  - name: Countries
+    description: Manage countries 
+  - name: Categories
+    description: Manage categories 
+  - name: Subcategories
+    description: Manage subcategories
+  - name: Products
+    description: Manage products 
+  - name: Items
+    description: Manage items
+  - name: Customers
+    description: Manage customers
+  - name: Orders
+    description: Manage Orders
+  - name: Returns
+    description: Manage Returns
+  - name: Profile
+    description: Profile Information
+  - name: Logs
+    description: Manage Logs
+  - name: Teams
+    description: Manage Teams
+  - name: Transaction
+    description: Manage Transaction
+  - name: Items-Bulk
+    description: Manage Items Bulk
+  
+
+
+paths:
+   /login:
+      $ref:  "./path-items/login.yaml#/params"
+   /admin/users:
+       $ref: "./path-items/users.yaml#/params"
+   /admin/users/{userid}:    
+       $ref: "./path-items/users.yaml#/no_params"
+   /admin/clients:
+       $ref: "./path-items/clients.yaml#/params"
+   /admin/clients/{clientid}:
+       $ref: "./path-items/clients.yaml#/no_params"
+   /admin/requests/{requestid}:
+       $ref: "./path-items/requests.yaml#/no_params"
+   /admin/requests:
+       $ref: "./path-items/requests.yaml#/params"
+   /brands/{brandid}:
+       $ref: "./path-items/brands.yaml#/no_params"
+   /brands:
+       $ref: "./path-items/brands.yaml#/params"
+  
+   /manufacturers:
+      $ref: "./path-items/manufacturers.yaml#/params"
+   /manufacturers/{manufacturerid}:
+      $ref: "./path-items/manufacturers.yaml#/no_params" 
+   /countries:
+      $ref: "./path-items/countries.yaml#/params"
+   /countries/{countryid}:
+      $ref: "./path-items/countries.yaml#/no_params"
+   /categories:
+      $ref: "./path-items/categories.yaml#/params"
+   /categories/{categoryid}:
+      $ref: "./path-items/categories.yaml#/no_params"   
+   /subcategories:
+      $ref: "./path-items/subcategories.yaml#/params"
+   /subcategories/{subcategoryid}:
+      $ref: "./path-items/subcategories.yaml#/no_params"
+   /products:
+      $ref: "./path-items/products.yaml#/params"
+   /products/{productid}:
+      $ref: "./path-items/products.yaml#/no_params"
+   /items/{itemid}:
+      $ref: "./path-items/items.yaml#/no_params"
+   /items:
+      $ref: "./path-items/items.yaml#/params"
+   /customers:
+      $ref: "./path-items/customers.yaml#/params"
+   /customers/{customerid}:
+      $ref: "./path-items/customers.yaml#/no_params"
+   /orders:
+      $ref: "./path-items/orders.yaml#/params"
+   /orders/{orderid}:
+      $ref: "./path-items/orders.yaml#/no_params"
+   /returns/{returnid}:
+      $ref: "./path-items/returns.yaml#/no_params"
+   /returns:
+      $ref: "./path-items/returns.yaml#/params"
+   /profile:
+      $ref: "./path-items/profile.yaml#/no_params"
+   /logs:
+      $ref: "./path-items/logs.yaml#/params"
+   /logs{logid}:
+      $ref: "./path-items/logs.yaml#/no_params"
+   /teams:
+      $ref: "./path-items/teams.yaml#/params"
+   /teams/{memberid}:
+      $ref: "./path-items/teams.yaml#/no_params"
+   /items-bulk:
+      $ref: "./path-items/items-bulk.yaml#/params"
+   /items-bulk/{productid}:
+      $ref: "./path-items/items-bulk.yaml#/no_params"
+      
+components:
+  schemas:
+    Users:
+      $ref: "./schemas/user.yaml#/components/schemas/Users"
+    Requests:
+       $ref: "./schemas/request.yaml#/components/schemas/Request"
+    Options:
+       $ref: "./schemas/option.yaml#/components/schemas/Options"
+    Products:
+       $ref: "./schemas/product.yaml#/components/schemas/Products"
+    ItemBulk:
+       $ref: "./schemas/items-bulk.yaml#/components/schemas/ItemsBulk"
+    Items:
+       $ref: "./schemas/item.yaml#/components/schemas/Items"
+    ItemsRelation:
+       $ref: "./schemas/item.yaml#/components/schemas/ItemsRelation"
+    Customers:
+       $ref: "./schemas/customer.yaml#/components/schemas/Customers"
+    Subcategory:
+       $ref: "./schemas/subcategory.yaml#/components/schemas/Subcategory"
+    ItemsBulk:
+       $ref: "./schemas/items-bulk.yaml#/components/schemas/ItemsBulk"
+    LineItems:
+       $ref: "./schemas/order.yaml#/components/schemas/LineItems"
+    Orders:
+        $ref: "./schemas/order.yaml#/components/schemas/Orders"
+    Returns:
+        $ref: "./schemas/return.yaml#/components/schemas/Returns"
+    Profile:
+         $ref: "./schemas/profile.yaml#/components/schemas/Profile"
+    Logs:
+         $ref: "./schemas/logs.yaml#/components/schemas/Logs"
+    Teams:
+         $ref: "./schemas/team.yaml#/components/schemas/Teams"
+    Permissions:
+         $ref: "./schemas/permissions.yaml#/components/schemas/Permissions"
+    Login:
+         $ref: "./schemas/login.yaml#/components/schemas/Login"
+
+  parameters:
+       Filter:
+           name: filter
+           schema:
+             type: string
+             example: '{"q":"xyz"}'
+           description: query strings
+           in: query
+       Range:    
+           name: range
+           schema:
+             type: string
+             example: "[0,9]"
+           description: range of the records
+           in: query
+       Sort:  
+           name: sort
+           in: query
+           schema:
+             type: string
+             example: '["id","asc"]'
+           description: sort field and sorting 
+  requestBodies:
+      UsersUpdate:
+         $ref: "./schemas/user.yaml#/components/requestBodies/UsersUpdate"
+      ItemsUpdatePrice:
+           $ref: "./schemas/item.yaml#/components/requestBodies/ItemsUpdatePrice"
+      OptionsRequest:
+           $ref: "./schemas/option.yaml#/components/requestBodies/OptionsRequest"
+      ProductsUpdate:
+           $ref: "./schemas/product.yaml#/components/requestBodies/ProductsUpdate"
+      OrdersCreate:
+           $ref: "./schemas/order.yaml#/components/requestBodies/OrdersCreate"
+      OrdersUpdate:
+           $ref: "./schemas/order.yaml#/components/requestBodies/OrdersUpdate"
+      ReturnsUpdate:
+           $ref: "./schemas/return.yaml#/components/requestBodies/ReturnsUpdate"
+      TeamsUpdate:
+           $ref: "./schemas/team.yaml#/components/requestBodies/TeamsUpdate"
+      ItemsBulkUpdate:
+           $ref: "./schemas/items-bulk.yaml#/components/requestBodies/ItemsBulkUpdate"
+      
+  responses:
+       UsersResponse:
+           $ref: "./schemas/user.yaml#/components/responses/UsersResponse"
+       UsersResponseArray:
+          $ref: "./schemas/user.yaml#/components/responses/UsersResponseArray"
+       ItemsResponse:
+          $ref: "./schemas/item.yaml#/components/responses/ItemsResponse"
+       ItemsResponseArray:
+          $ref: "./schemas/item.yaml#/components/responses/ItemsResponseArray"
+       OptionsResponse:
+          $ref: "./schemas/option.yaml#/components/responses/OptionsResponse"
+       OptionsStatusResponse:
+          $ref: "./schemas/option.yaml#/components/responses/OptionsStatusResponse"
+       Unauthorize:
+          $ref: "./schemas/response.yaml#/components/responses/unauthorize" 
+       Not_Allowed:
+          $ref: "./schemas/response.yaml#/components/responses/not_allowed" 
+       Field_Missing:
+          $ref: "./schemas/response.yaml#/components/responses/field_missing" 
+       Fieldmiss_or_Notallowed:
+          $ref: "./schemas/response.yaml#/components/responses/fieldmiss_or_notallowed"
+       SubcategoryByCategoryId:
+          $ref: "./schemas/subcategory.yaml#/components/responses/SubcategoryByCategoryId"
+       ProductGet:
+          $ref: "./schemas/product.yaml#/components/responses/ProductGet"
+       OrdersResponse:
+           $ref: "./schemas/order.yaml#/components/responses/OrdersResponse"
+       OrdersResponseArray:
+           $ref: "./schemas/order.yaml#/components/responses/OrdersResponseArray"
+       ReturnsResponse:
+           $ref: "./schemas/return.yaml#/components/responses/ReturnsResponse"
+       ReturnsResponseArray:
+           $ref: "./schemas/return.yaml#/components/responses/ReturnsResponseArray"
+       LogsResponseArray:
+           $ref: "./schemas/logs.yaml#/components/responses/LogsResponseArray"
+       LogsResponse:
+           $ref: "./schemas/logs.yaml#/components/responses/LogsResponse"
+       TeamsResponse:
+           $ref: "./schemas/team.yaml#/components/responses/TeamsResponse"
+       TeamsResponseArray:
+           $ref: "./schemas/team.yaml#/components/responses/TeamsResponseArray"
+       ItemsBulkResponse:
+           $ref: "./schemas/items-bulk.yaml#/components/responses/ItemsBulkResponse"
+       
+
+       
+         
+        
+    
+     
+
+    
+    
+               
+         
+         
+           
+
+
+     
+  

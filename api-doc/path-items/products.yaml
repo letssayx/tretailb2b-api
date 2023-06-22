@@ -1,0 +1,205 @@
+params:
+   post:
+     summary: Add products
+     description: pass product information with post request
+     tags:
+       - Products
+     requestBody:
+       content:
+         application/json:
+            schema:
+              type: object
+              $ref: "../main.yaml#/components/schemas/Products"
+     responses:
+        "201":
+           description: operation success
+           content:
+             application/json:
+               schema:
+                 properties:
+                   status:
+                      type: string
+                      example: "success"
+                   message:
+                     type: string
+                     example: "Successfully Product Created"
+                   id:
+                     type: integer
+                     example: 298
+        "401":
+            $ref: "../main.yaml#/components/responses/Unauthorize"
+        "405":
+             description: Validation error
+             content:
+               application/json:
+                 schema:
+                   properties:
+                      status:
+                        type: string
+                        example: "fail"
+                      message:
+                        type: string
+                        example: "Validation Error"
+        
+   get:
+      description: pass filter, range and sort parameter
+      summary: filter sort and paginate products
+      tags:
+        - Products
+      parameters:
+         - $ref: "../main.yaml#/components/parameters/Filter"
+         - $ref: "../main.yaml#/components/parameters/Range"
+         - $ref: "../main.yaml#/components/parameters/Sort"
+      responses:
+         "200":
+           description: operation success
+           content: 
+             application/json:
+                schema:
+                   type: array
+                   items:
+                      properties:
+                         status:
+                            type: string
+                            example: "success"
+                         id:
+                            type: integer
+                            example: 298                              
+                         name:
+                            type: string
+                            example: "Boring Dress by Meerkat Women\\'s Hosiery Cotton Kurti Night Suit"
+                         sku:
+                            type: string
+                            example: "BD-NSKURTI33"
+                         hsn_code:
+                            type: string
+                            example: "985565699"
+                         thumbnail_image:
+                            type: string
+                            examle: "...picture.jpg"
+  
+         "401":
+             $ref: "../main.yaml#/components/responses/Unauthorize"   
+      
+
+              
+           
+       
+no_params:
+   post:
+     summary: update product
+     description: pass product information with post request
+     tags:
+       - Products
+     parameters:
+         - name: productid
+           schema:
+             type: integer
+             example: 298
+           description: The id of the product
+           in: path
+     requestBody:
+         $ref: "../main.yaml#/components/requestBodies/ProductsUpdate"
+     responses:
+        "200":
+           description: operation success
+           content:
+             application/json:
+               schema:
+                 properties:
+                   status:
+                      type: string
+                      example: "success"
+                   message:
+                     type: string
+                     example: "Successfully Product Updated"
+        "401":
+            $ref: "../main.yaml#/components/responses/Unauthorize"
+        "400":
+           description: bad request
+           content:
+             application/json:
+               schema:
+                 properties:
+                   status:
+                      type: string
+                      example: "fail"
+                   message:
+                      type: string
+                      example: "Undefined index: pictures"
+   get:
+      description: pass product id in path parameter
+      summary: get product by id
+      tags:
+        - Products
+      parameters:
+         - name: productid
+           schema:
+             type: integer
+             example: 298
+           description: The id of the product
+           in: path
+      responses:
+         "200":
+           description: operation success
+           content: 
+             application/json:
+                schema:
+                     allOf:
+                       - $ref: "../main.yaml#/components/responses/ProductGet"
+                       
+         "401":
+            $ref: "../main.yaml#/components/responses/Unauthorize"
+         "400":
+           description: bad request
+           content:
+             application/json:
+               schema:
+                 properties:
+                   status:
+                      type: string
+                      example: "fail"
+                   message:
+                      type: string
+                      example: "Trying to get property 'pictures' of non-object"
+   delete:
+       summary: delete product by id
+       description: pass product id in path parameter
+       tags:
+        - Products
+       parameters:
+         - name: productid
+           schema:
+             type: integer
+             example: 298
+           description: The id of the product
+           in: path
+       responses:
+         "200":
+           description: operation success
+           content:
+             application/json:
+               schema:
+                 properties:
+                   status:
+                      type: string
+                      example: "success"
+                   message:
+                      type: string
+                      example: "Successfully Product Deleted"
+         "401":
+            $ref: "../main.yaml#/components/responses/Unauthorize"
+         "400":
+           description: bad request
+           content:
+             application/json:
+               schema:
+                 properties:
+                   status:
+                      type: string
+                      example: "fail"
+                   message:
+                      type: string
+                      example: "Trying to get property 'pictures' of non-object"
+                
+                 

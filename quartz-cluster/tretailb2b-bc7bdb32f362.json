@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "tretailb2b-fuzonmedia",
+  "private_key_id": "bc7bdb32f3623fc5fad85a2f952eef14fb13bb24",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDaSqJLWMXvmRYX\nxfNXyiEL5bYWIM63q8SNStJsJUk6fzGABtuW2niM6iKxN6ShCyHkAuCPDap2Kc1B\nfsPWJ3PL2X0sXNpAgTeSJs0OF4WAoKYIgFAplbw/1tNMMqRREs6Fsfi7B6l22f4N\nDNeecs4M2uuj95qcoJJOccUd6DBETHVNHkSVlUdjyzTSPFq88uRlnO5OtLA3T22n\nt17KNQMWIb6COnglXDg812nv5PvxdltqvhQlf8Hh1lA80f1aE0eqYaRbjHiiImpD\nKX1xCr8uidgS4kRrxSj8eLlTPJxeA9jV9pvxhFU0zujWhoTX1tWE+Fl4ehHSPudY\nTv5fdgOXAgMBAAECggEAZaLuYcqZjm9mu/bs0GlKbbGs0CzCUv5k66x0wOmzaMsk\nDwoiX+Ck1GeHc6AGxPzb8L/uMm0YeyAHc4FESYfhAH7pKyiobfQ8HY53VyJYhIVI\nCRlFObeACPFLPGUv4JezFMjCmMJ+gtoI0aazFhE6Iv4jTRrSIC8bL+8E6mHbZ1Cd\n/A00MJVaUGZI+xto//1Q8hsuDMQd9NO6JIpkoWfTosENwJjGvohHlC+WdBzaGMIx\ndN5sfA/pJyfTJLyfuT4BDfVIHgMXlHMgV09T3f1OWHIx7GSJFVxO0ZWCtn+U9HzW\nd9fFrhw56l0AO0vDJxG21eIUOa7FFOUwpVQmEpyEwQKBgQDwEt4zraD9PIR8T4A+\nmZDyBeA6z7YOLWUbx5PtUltS6WkLIBF1bsn73h6G+fOEfSa3d0wUuEx34SlJDBms\nfEN8DYhqJapxwV/PzSOjpMDzysPvi6Rd3VQqXC5M5aVYYxwkeJTMcNAbpveSdep1\nXinkav3ooeRHOJeKMlbrSgRbpwKBgQDoxdfU7BpA4GmpAwZw2DWO2D6A7I+zIPj6\nCMXsSyFGtnBx/3XqRY4KQ3I9p5tniL7mwbrGRchg8pcHL4OKnxw0jM4I+DFHQ3dX\nk1bAB+lg5POUAbFDC0zmruLGqp1Cox4+41QJ8hTsTDoT8jPf7tIO403VGIkmeBOL\nCPfLWKxWkQKBgQCqwHDEhukrVKDSneUUITuDuIQssFHHsafpY0Emmd4UkalB3XQt\ndzg4aVqDHEKE6FLiSPqW/iJ9XWt05iNYmCWTlTiCbvnU4PoZncmMegE3JO/JcCPf\nEy3q1xejX+8Dd7KrigwjgNWz5UTPKgkxo2Decu7XSFZKBcla5MUHouSInwKBgQDa\nSea8u2lnW8xafgbFPk0Dl1EOMEoWTx6NxDpv/IjJOn+6uDnJJ88rWtLAdPSspDV6\nS0UvePOPzw/I4kr2bX3S3hS9npr/3IoHa5nX3dODVVIDg47Lc8Z7MphifE+b1UKg\n8Si3ZvkuG9H/MIxrPRhqc8lixG6hz8tsAE34uUBssQKBgH6ZG21gIbOW9PdiPtlb\nHQa6jmOPzsTBMnaB68HZSwUNaS3pB1hosKiwQVzhIEQ6pkfiyVKnjv2MZsOs3Uwl\nNWfnhgTuoOU4VWjUcqKv3MEiR0NjuEwZ97xizrq+i6rDE5ShJvZ+CODqkXnSn9ul\nKOqhDavZL7XGyWa3bKDGZwzt\n-----END PRIVATE KEY-----\n",
+  "client_email": "tretail-gcp-access@tretailb2b-fuzonmedia.iam.gserviceaccount.com",
+  "client_id": "100682925360130039937",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/tretail-gcp-access%40tretailb2b-fuzonmedia.iam.gserviceaccount.com"
+}

@@ -1,0 +1,162 @@
+params:
+  post:
+        summary: creater an user
+        tags:
+          - User
+        requestBody:
+          description: request body
+          content:
+            application/json:
+              schema:
+                 $ref: "../main.yaml#/components/schemas/Users"
+        responses:
+          "201":
+            description: operation success 
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      
+                    status:
+                      type: string
+                      example: "success"
+                    message:
+                      type: string
+                      example: "Successfully User Created"
+          "401":
+             $ref: "../main.yaml#/components/responses/Unauthorize"
+  get:
+         summary: Sort filter and paginate users records
+         tags: 
+           - User
+         parameters:
+              - $ref: "../main.yaml#/components/parameters/Filter"
+              - $ref: "../main.yaml#/components/parameters/Range"
+              - $ref: "../main.yaml#/components/parameters/Sort"
+         responses:
+            "200":
+                $ref: '../main.yaml#/components/responses/UsersResponseArray'
+            "401":
+                $ref: "../main.yaml#/components/responses/Unauthorize"
+             
+  delete:
+        description: pass the selected users id with query parameter
+        summary: delete selected users
+        parameters:
+           - name: filter
+             schema:
+               type: string
+               example: '{"id":[7,8]}'
+             description: query strings that represent ids of the users
+             in: query
+        tags:
+          - User
+        responses:
+           "405":
+             description: Method not Allowed
+           "401":
+              $ref: "../main.yaml#/components/responses/Unauthorize"
+        
+
+
+
+no_params:
+    get:
+         tags:
+          - User
+         description: get user by id
+         summary: get an user
+         parameters:
+           - in: path
+             name: userid
+             required: true
+             schema:
+               type: integer
+               example: 2
+             description: the id of user
+         responses:
+           "200":
+               $ref: '../main.yaml#/components/responses/UsersResponse'
+           "400":
+              description: bad request
+              content:
+                application/json:
+                  schema:
+                     properties:
+                       status: 
+                         type: string
+                         example: "fail"
+                       message:
+                         type: string
+                         example: "Trying to get property 'id' of non-object"
+           "401":
+              $ref: "../main.yaml#/components/responses/Unauthorize"
+
+    post:
+         tags:
+          - User
+         summary: update user
+         description: pass information about user
+         parameters:
+           - in: path
+             name: userid
+             required: true
+             schema:
+               type: integer
+               example: 2
+             description: the id of user
+         requestBody:
+            $ref: '../main.yaml#/components/requestBodies/UsersUpdate'
+                  
+         responses:
+            "200":
+              description: operation success
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: "success"
+                      message:
+                        type: string
+                        example: "Successfully User Updated"
+            "405":
+              description: Method not Allowed
+              content:
+                application/json:
+                  schema:
+                     properties:
+                       status: 
+                         type: string
+                         example: "fail"
+                       message:
+                         type: object
+            "401":
+               $ref: "../main.yaml#/components/responses/Unauthorize"
+                         
+                         
+         
+         
+    delete:
+        tags:
+          - User
+        description: delete user by id
+        summary: delete an user
+        parameters:
+           - in: path
+             name: userid
+             required: true
+             schema:
+               type: integer
+               example: 2
+             description: the id of user
+        responses:
+           "405":
+             description: Method not Allowed
+           "401":
+              $ref: "../main.yaml#/components/responses/Unauthorize"

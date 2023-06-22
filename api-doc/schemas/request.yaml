@@ -1,0 +1,64 @@
+components:
+ schemas:
+  Request:
+    type: object
+    properties:
+       id:
+        type: integer
+        example: 2
+       official_name:
+         type: string
+         example: "PPT Exports"
+       official_address:
+         type: string
+         example: "Near Peninsula Business Park"
+       official_phone:
+          type: string
+          example: "+919229935820"
+       official_email:
+          type: string
+          example: "ronakexports945@gmail.com"
+       email:
+         type: string
+         example: "ronakexports945@gmail.com"
+       password:
+          type: string
+          example: "$20$eLix1MKa4jBpjI38hbOSLDYJ5t48Lk3GEZq3WPFYd4y"
+       state:
+         type: string
+         example: "Maharashtra"
+       gstin:
+           type: string
+           example: "27AACERRTT"
+       extra_information:
+            type:
+              - object
+              - null
+       validation_token:
+            type: 
+             - string
+             - null
+       active:
+          type: integer
+          enum: 
+            - 1
+            - 0
+          example: 0
+       google_verification:
+          type: string
+          example: '{\"success\": true, \"hostname\": \"superstore.tretailb2b.com\", \"challenge_ts\": \"2020-10-22T08:17:56Z\"}'
+       email_verified_at:
+         type: string
+         format: date-time
+         example: "2020-10-22 08:38:03"
+       created_at:
+         type: string
+         format: date-time
+         example: "2020-10-22T08:19:08.000000Z"
+       updated_at:
+         type: string
+         format: date-time
+         example: "2020-10-22T08:42:13.000000Z"
+       name:
+          type: string
+          example: "PPT Exports"

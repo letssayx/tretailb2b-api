@@ -1,0 +1,67 @@
+components:
+   schemas: 
+      Logs:
+        type: object
+        properties:
+           id:
+                type: integer
+                example: 88
+           name:
+                type: string
+                example: "TRANSACTION_UPLOAD"
+           status:
+                type: string
+                example: "completed"
+           created_at:
+                type: string
+                example: "2021-03-23 11:20:52"
+   responses:
+      LogsResponseArray:
+        description: operation success
+        content:
+          application/json:
+             schema:
+                type: array
+                items:
+                  $ref: "../main.yaml#/components/schemas/Logs"
+      LogsResponse:
+        description: operation success
+        content:
+          application/json:
+             schema:
+               allOf:           
+                 - $ref: "../main.yaml#/components/schemas/Logs"
+                 - type: object
+                   properties:
+                      queue_id:
+                        example: null
+                      updated_at:
+                          type: string
+                          example: "2021-03-23 11:20:52"
+                      output_files:
+                         type: array
+                         items: 
+                           type: object
+                           properties:
+                             name:
+                               type: string
+                               example: ""
+                             urL:
+                               type: string
+                               example: "https://storage.googleapis.com/tretail-logs.."
+                      input_files:
+                         type: array
+                         items: 
+                           type: object
+                           properties:
+                             name:
+                               type: string
+                               example: ""
+                             urL:
+                               type: string
+                               example: "https://storage.googleapis.com/tretail-logs.."
+
+                        
+         
+                 
+    

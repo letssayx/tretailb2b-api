@@ -1,0 +1,343 @@
+import React , { Fragment,useState } from 'react';
+import {required, minLength, maxLength, minValue, maxValue, number, regex, email, choices} from 'react-admin';
+import { FormTab,TabbedForm,ReferenceField,UrlField,AutocompleteInput,Filter,SearchInput,Create, ArrayField,ChipField,Edit,NumberInput,ImageField,DeleteButton,List,useDataProvider, Loading, Error,FormDataConsumer,ReferenceInput, SelectInput,BooleanInput,SimpleForm,Title, ArrayInput, TextInput,SimpleFormIterator, DateInput, ReferenceManyField, Datagrid, TextField, DateField, SaveButton,EditButton,Toolbar,useNotify,useRedirect} from 'react-admin';
+import { useForm } from 'react-final-form';
+import { parse } from 'query-string';
+import CancelButton from '../../settings/CancelButton';
+import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Accordion from '@material-ui/core/ExpansionPanel';
+import AccordionSummary from '@material-ui/core/ExpansionPanelSummary';
+import AccordionDetails from '@material-ui/core/ExpansionPanelDetails';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+import PropTypes from 'prop-types';
+import Card from '@material-ui/core/Card';
+import Grid from '@material-ui/core/Grid';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+
+const get_data = (value) => {
+    console.log(value);
+    //const form = useForm();
+    //form.change('unit_price',value);
+}
+const useStyles = makeStyles({
+  textbox: {
+      width: 100,
+  },
+});
+const OrderFilter = props => (
+  <Filter {...props}>
+      <SearchInput source="q" alwaysOn />
+  </Filter>
+);
+
+const CustomToolbar = props => (
+  <Toolbar {...props} classes={useStyles()}>
+      <SaveButton style={{marginRight:'10px'}} />
+      <CancelButton />
+  </Toolbar>
+);
+
+
+const cssStyle = {
+    display:'flex',
+    padding:'10px 9px 40px',
+    dateInput:{
+       display:'block',
+       width:'120px',
+       padding:'6px 20px',
+       marginRight:'10px',
+       border:'1px solid #999',
+       backgroundColor:'#ddd',
+       borderRadius:'3px'
+    }
+  }
+  const useSelectStyles = makeStyles((theme)=>({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+}));
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-tabpanel-${index}`}
+      aria-labelledby={`scrollable-tab-${index}`}
+      {...other}
+    >
+        {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired
+};
+
+function a11yProps(index) {
+  return {
+    id: `scrollable-tab-${index}`,
+    'aria-controls': `scrollable-tabpanel-${index}`,
+  };
+} 
+
+
+
+export const ReturnList = ( props ) =>  {
+    const [panel,setPanel]=useState(0);
+    const handleChange=(event,newValue)=>{
+        setPanel(newValue);
+    }
+    
+    return( 
+     <div>
+     <Paper elevation={2}> 
+      <Tabs value={panel} onChange={handleChange}   aria-label="simple tabs example">
+           <Tab label="Returns"   {...a11yProps(0)} />
+           <Tab label="Operations" {...a11yProps(1)} />
+      </Tabs>
+     </Paper>
+       <TabPanel value={panel} index={0}> <ReturnShow {...props}/> </TabPanel>
+       <TabPanel value={panel} index={1}> <ReturnOperation  {...props}/></TabPanel>
+     </div>
+    );
+  } 
+
+  
+
+
+const LineItems = ({ formData, ...rest}) => {
+    const form = useForm();
+    const classes = useStyles();
+    const dataProvider = useDataProvider();
+    return (
+            <div>
+            <ReferenceInput 
+                source={`${rest.id}.item_id`} reference="items"
+                onChange={ (value) => { 
+                  //console.log("testing");
+                    //console.log(rest);
+                    //console.log(value);
+                    //console.log(value.target.value);
+                    dataProvider.getOne('items',{ id : value})
+                        .then(({ data }) => {
+                            console.log(data);
+                            form.change(rest.id+'.unit_price',data.price);
+                            form.change(rest.id+'.tax_rate',data.product_tax_rate);
+                            form.change(rest.id+'.hsn_code',data.product_hsn_code);
+                            //setUser(data);
+                            //setStore(user_store)
+                            //setLoading(false);
+                        })
+                        .catch(error => {
+                            //setError(error);
+                            //setLoading(false);
+                        })
+                   
+                }
+                }
+                validate={required()}
+                {...rest}
+            >
+            <AutocompleteInput optionText="product_name_with_sku" options={{
+    suggestionsContainerProps: {
+        disablePortal: true,
+}}}/>
+            </ReferenceInput>
+            <TextInput source={`${rest.id}.unit_price`}   className={classes.textbox} label="Sale Price" validate={required()}/>
+            <NumberInput source={`${rest.id}.quantity`}  className={classes.textbox} label="Quantity" validate={required()} defaultValue={0} />
+            <NumberInput source={`${rest.id}.tax_rate`}  className={classes.textbox} label="Tax rate" validate={required()} defaultValue={''} disabled />
+            <TextInput source={`${rest.id}.hsn_code`} className={classes.textbox} label="HSN" validate={required()} defaultValue={''} disabled />
+            <TextInput source={`${rest.id}.order_item_id`}  className={classes.textbox} label="OrderItemID" disabled />
+            </div>
+    );
+};
+
+
+export const ReturnEdit = (props) => (
+    <Edit {...props}>
+      <SimpleForm
+        toolbar={<CustomToolbar />}
+        >
+            <TextField source="order_ref" label="Order Ref"/>
+            <TextField source="order_date" label="Order Date"/>
+            <TextField source="lineitems.sku" label="Lineitem SKU"/>
+            <TextField source="lineitems.quantity" label="Ordered Quantity"/>
+            <TextField source="initiate_date" label="Return Initiate Date"/>
+            <TextField source="quantity" label="Returning Quantity" />
+            <TextField source="type" label="Return Type" />
+            <DateInput source="received_date" label="Return Received Date" />
+            <BooleanInput source="is_received" label="Return Received?" />
+            <TextInput source="quantity_received" label="Quantity Received" />
+            <BooleanInput source="is_inventory_adjusted" label="Inventory Adjusted?" />
+            <TextField source="inventory_adjusted_date" label="Inventory Adjusted Date" />
+            <BooleanInput source="is_good_inventory" label="Good Inventory?" />
+            <TextField source="reason" label="Reason" />
+            <TextInput source="notes" label="Notes" />
+            
+        </SimpleForm>
+    </Edit>
+);
+
+const styles = {
+  image: { maxHeight: '3rem' }
+}
+
+
+export const ReturnShow = (withStyles(styles)(({ classes, permissions, ...props }) => (
+    <List {...props}  >
+        <Datagrid rowClick="edit">
+            <TextField source="order_ref" label="Order Ref"/>
+            <TextField source="order_date" label="Order Date"/>
+            <TextField source="lineitems.sku" label="Lineitem SKU"/>
+            <TextField source="lineitems.quantity" label="Ordered Quantity"/>
+            <TextField source="initiate_date" label="Return Initiate Date"/>
+            <TextField source="quantity" label="Returning Quantity" />
+            <TextField source="type" label="Return Type" />
+            <TextField source="received_date" label="Return Received Date" />
+            <TextField source="is_received" label="Return Received?" />
+            <TextField source="reason" label="Reason" />
+            <TextField source="notes" label="Notes" />
+        </Datagrid>
+     </List>
+)));
+
+const ReturnOperation = ( props ) => {
+
+    const classes = useSelectStyles();
+    const [actionName, setActionName] = useState("RETURN_UPLOAD");
+    const [uploadFile, setUploadFile] = useState(null);
+    const [loading, setLoading] = useState( false );
+    const notify = useNotify();
+    const redirect = useRedirect();
+  
+    
+
+    const handleSubmit = () => {
+       const allowedTypes = ['csv'];
+       
+       if( uploadFile != null && 
+           uploadFile.size &&
+           uploadFile.size !== 0
+           
+        ){
+           const tmp_arr = uploadFile.name.split(".");
+           const ext = tmp_arr[tmp_arr.length - 1];
+           if( allowedTypes.indexOf(ext) !== -1){
+                setLoading(false);
+                const formData = new FormData();
+                formData.append('type', actionName);
+                formData.append('file', uploadFile);
+                // formData.append('data',showDateInput);
+                fetch(process.env.REACT_APP_API_ENDPOINT+'/logs', { 
+                  method: 'POST',
+                  body: formData,
+                  credentials: 'include'
+                })
+                .then(res => res.json())
+                .then(json => {
+                  setLoading(false);
+                  if(json.status == "success") {
+                    notify(`${json.message}`, 'success');
+                    redirect('/logtab');
+                  }
+                  else {
+                    notify(`${json.message}`, 'warning');
+                  }
+                })
+                .catch(error => {
+                   setLoading(false);
+                   notify(`${error.message}`, 'warning');
+                });
+           }else{
+              notify('File is not valid','warning');
+           }
+        }else{
+           notify('Inputs is not valid','warning');
+        }
+    }
+  
+    if (loading) return <Loading />;
+  
+    return (
+       <Card>
+           <CardContent>
+            <Grid container>
+              <Grid xs={12}>
+                <FormControl variant="filled" className={classes.formControl}>
+                <InputLabel id="demo-simple-select-filled-label">Action</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={actionName}
+                  onChange={(e)=> setActionName( e.target.value )}
+                >
+                  <MenuItem value={"RETURN_UPLOAD"}> SALES RETURN UPLOAD </MenuItem>
+                </Select>
+                </FormControl>
+              </Grid>
+              <Grid xs={12}>
+                 <FormControl variant="filled" className={classes.formControl}>
+                   <input type="file" name="file" className="file" onChange={(e) => setUploadFile(e.target.files[0])}/>
+                 </FormControl>
+              </Grid>
+              <Grid> 
+                  <Paper elevation={0} style={{padding:'10px'}}>
+                     <Typography >
+                       Download the CSV template below.To download click on DOWNLOAD button. Fill the CSV file with valid data and upload it. order ref,SQU,line item id (if any),condition (0-bad 1- good),quantity ,description, received date by columns should be present in the CSV file.
+                       <br/>
+                       <a href="https://storage.googleapis.com/public-templates/return_receieve.csv">Download</a>
+                       <br/>
+                       Upload  Return Order with CSV file and upload it into the system.To upload CSV file please click on the CREATE button.
+                     </Typography>
+                  </Paper>
+              </Grid>
+           </Grid>
+  
+           </CardContent>
+           <CardActions>
+              <Button variant="contained" color="primary" onClick={() => handleSubmit()}>Create</Button>
+           </CardActions>
+       </Card>
+    );
+  
+  
+  }
+
+// export const ReturnList = (withStyles(styles)(({ classes, permissions, ...props }) => (
+//     <List {...props}  filters={<OrderFilter />}>
+//         <Datagrid rowClick="edit">
+//             <TextField source="order_ref" label="Order Ref"/>
+//             <TextField source="order_date" label="Order Date"/>
+//             <TextField source="lineitems.sku" label="Lineitem SKU"/>
+//             <TextField source="lineitems.quantity" label="Ordered Quantity"/>
+//             <TextField source="initiate_date" label="Return Initiate Date"/>
+//             <TextField source="quantity" label="Returning Quantity" />
+//             <TextField source="type" label="Return Type" />
+//             <TextField source="received_date" label="Return Received Date" />
+//             <TextField source="is_received" label="Return Received?" />
+//             <TextField source="reason" label="Reason" />
+//             <TextField source="notes" label="Notes" />
+//         </Datagrid>
+//     </List>
+// )));

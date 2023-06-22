@@ -1,0 +1,206 @@
+params:
+   post:
+     summary: Add customers
+     description: Pass customer informations
+     tags:
+      - Customers
+     requestBody:
+       content:
+         application/json:
+           schema:
+             $ref: "../main.yaml#/components/schemas/Customers"
+     responses:
+       "200":
+           description: operation success
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   status:
+                     type: string
+                     example: "success"
+                   message:
+                     type: string
+                     example: "Successfully Customer Created"
+                   id:
+                     type: integer
+                     example: 10
+       "401":
+          $ref: "../main.yaml#/components/responses/Unauthorize"
+       "405":
+             description: Validation error
+             content:
+               application/json:
+                 schema:
+                   properties:
+                      status:
+                        type: string
+                        example: "fail"
+                      message:
+                        type: string
+                        example: "Validation Error"
+   get:
+     summary: Filter sort and paginate customers
+     description: pass filter sort and range parameters
+     tags:
+      - Customers
+     parameters: 
+         - $ref: "../main.yaml#/components/parameters/Filter"
+         - $ref: "../main.yaml#/components/parameters/Range"
+         - $ref: "../main.yaml#/components/parameters/Sort"
+     responses:
+       "200":
+          description: operation success 
+          content:
+             application/json:
+               schema:
+                 type: array
+                 items:
+                   allOf:
+                     - $ref: "../main.yaml#/components/schemas/Customers"
+                     - type: object
+                       properties:
+                         id:
+                             type: integer
+                             example: 2
+                         created_at:
+                             type: string
+                             format: date-time
+                             example: "2020-06-14T15:25:47.000000Z"
+                         updated_at:
+                             type: string
+                             format: date-time
+                             example: "2020-06-30T07:02:48.000000Z"
+       "401":
+          $ref: "../main.yaml#/components/responses/Unauthorize"
+no_params:
+   get:
+     summary: get customer by id
+     description: pass customer id in path parameter
+     tags:
+       - Customers
+     parameters:
+        name: customerid
+        in: path
+        description: The customer id
+        schema:
+          type: integer
+        example: 2
+     responses:
+        "200":
+          description: operation success
+          content:
+            application/json:
+               schema:
+                 allOf:
+                     - $ref: "../main.yaml#/components/schemas/Customers"
+                     - type: object
+                       properties:
+                         id:
+                             type: integer
+                             example: 2
+                         status:
+                             type: string
+                             example: success
+        "400":
+           description: bad request
+           content:
+             application/json:
+               schema:
+                 properties:
+                   status:
+                      type: string
+                      example: "fail"
+                   message:
+                      type: string
+                      example: "Trying to get property 'id' of non-object"
+
+   
+   delete:
+      summary: delete customer
+      description: pass customer id in path parameter
+      tags:
+       - Customers
+      parameters:
+        name: customerid
+        in: path
+        description: The customer id
+        schema:
+          type: integer
+        example: 2
+      responses:
+         "200":
+           description: operation success
+           content: 
+             application/json:
+                schema:
+                  type: object
+                  properties:
+                     status:
+                       type: string
+                       example: "success"
+                     message:
+                       type: string
+                       example: "Successfully Customer Deleted"
+         "401":
+            $ref: "../main.yaml#/components/responses/Unauthorize"
+        
+
+
+   post: 
+     summary: update customer
+     description: pass customer informations
+     tags:
+      - Customers
+     parameters:
+        name: customerid
+        in: path
+        description: The customer id
+        schema:
+          type: integer
+        example: 2
+     requestBody:
+         content:
+           application/json:
+             schema:
+                 allOf:
+                     - $ref: "../main.yaml#/components/schemas/Customers"
+                     - type: object
+                       properties:
+                         id:
+                             type: integer
+                             example: 2
+     responses:
+         "200":
+            description: operation success
+            content:
+              application/json:
+                 schema:
+                   type: object
+                   properties:
+                     status:
+                       type: string
+                       example: "success"
+                     message:
+                       type: string
+                       example: "Successfully Customer Updated"
+         "401":
+          $ref: "../main.yaml#/components/responses/Unauthorize"
+         "405":
+             description: Validation error
+             content:
+               application/json:
+                 schema:
+                   properties:
+                      status:
+                        type: string
+                        example: "fail"
+                      message:
+                        type: string
+                        example: "Validation Error"
+         
+
+
+          
+       

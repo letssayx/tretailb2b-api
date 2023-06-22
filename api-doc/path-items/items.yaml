@@ -1,0 +1,97 @@
+params:
+   get:
+    summary: filter sort and paginate
+    description: pass filter sort and range parameters with get request
+    tags:
+      - Items
+    parameters:
+         - name: filter
+           schema:
+             type: string
+             enum: ['{"q":"xyz"}','{"product_id":298}']
+           description: query strings
+           in: query
+         - $ref: "../main.yaml#/components/parameters/Range"
+         - $ref: "../main.yaml#/components/parameters/Sort"
+    responses:
+       "200":
+         description: "operation success"
+         $ref: "../main.yaml#/components/responses/ItemsResponseArray"
+       "401":
+            $ref: "../main.yaml#/components/responses/Unauthorize"
+no_params:
+   get:
+    summary: get item by id
+    description: pass item id with with path parameter
+    tags:
+     - Items
+    parameters:
+         - name: itemid
+           schema:
+             type: integer
+             example: 1855
+           description: The id of the item
+           in: query
+    responses:
+       "200":
+         description: operation success
+         $ref: "../main.yaml#/components/responses/ItemsResponse"
+       "401":
+            $ref: "../main.yaml#/components/responses/Unauthorize"
+   post:
+     summary: update items
+     description: pass item data with post request
+     tags:
+       - Items
+     parameters:
+         - name: itemid
+           schema:
+             type: integer
+             example: 1855
+           description: The id of the item
+           in: query
+     requestBody:
+          $ref: "../main.yaml#/components/requestBodies/ItemsUpdatePrice"
+     responses:
+        "200":
+            description: operation success
+            content:
+              application/json:
+                schema:
+                  properties:
+                    status:
+                       type: string
+                       example: "success"
+                    message:
+                      type: string
+                      example: "Successfully Item Updated"
+        "401":
+            $ref: "../main.yaml#/components/responses/Unauthorize"
+   delete:
+      summary: delete items        
+      description: pass item id in path parameter
+      tags:
+       - Items
+      parameters:
+          - name: itemid
+            schema:
+              type: integer
+              example: 1855
+            description: The id of the item
+            in: query
+      responses:
+        "200":
+            description: operation success
+            content:
+              application/json:
+                schema:
+                  properties:
+                    status:
+                       type: string
+                       example: "success"
+                    message:
+                      type: string
+                      example: "Successfully Item Deleted"
+        "401":
+            $ref: "../main.yaml#/components/responses/Unauthorize"
+           

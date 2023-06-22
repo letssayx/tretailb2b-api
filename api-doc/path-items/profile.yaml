@@ -1,0 +1,14 @@
+no_params:
+  get: 
+    summary: get profile information
+    description: information about profile
+    tags:
+      - Profile
+    responses: 
+       "200":
+          content:
+            application/json:
+              schema:
+                $ref: "../main.yaml#/components/schemas/Profile"
+       "401":
+           $ref: "../main.yaml#/components/responses/Unauthorize"

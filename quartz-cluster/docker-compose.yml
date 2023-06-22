@@ -1,0 +1,35 @@
+version: '3'
+services:
+
+  jobnode:
+    build:
+      context: .
+      dockerfile: src/main/docker/Dockerfile
+      args:
+        JAR_FILE: target/app.jar
+        UTIL_DIR: src/main/docker/
+    ports:
+      - "7080:8080"
+    container_name: jobnode
+    environment:
+      - JAVA_OPTS=-Xmx512m -Xms256m -D
+    networks:
+      - nginx-proxy
+
+#  qtest2:
+#    build:
+#      context: .
+#      dockerfile: src/main/docker/Dockerfile
+#      args:
+#        JAR_FILE: target/app.jar
+#        UTIL_DIR: src/main/docker/
+#    ports:
+#      - "7081:8080"
+#    environment:
+#      - JAVA_OPTS=-Xmx512m -Xms256m -D
+#    networks:
+#      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external: true

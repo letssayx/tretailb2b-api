@@ -1,0 +1,27 @@
+# version: '3'
+
+# services:
+#    #PHP Service
+#    tretailapi:
+#      build:
+#       context: .
+#       dockerfile: Dockerfile
+#      image: fuzonmedia/tretailapi
+#      restart: unless-stopped
+#      volumes:
+#        - ./app/:/var/www/html
+#        - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+#      environment:
+#        VIRTUAL_HOST: api.tretailb2b.com
+#        LETSENCRYPT_HOST: api.tretailb2b.com
+#      working_dir: /var/www/html
+#      container_name: tretailapi
+#      networks:
+#        - nginx-proxy
+
+# networks:
+#   nginx-proxy:
+#     external: true
+
+
+

@@ -1,0 +1,76 @@
+components:
+  responses:
+     unauthorize:
+        description: Unauthorized
+        content:
+           application/json:
+              schema:  
+                type: object
+                properties:
+                   status:
+                     type: string
+                     example: "fail"
+                   message:
+                     type: string
+                     example: "Unauthorized"
+     not_allowed:
+        description: "Method not Allowed"
+        content:
+           application/json:
+              schema: 
+                type: object
+                properties:
+                   status:
+                     type: string
+                     example: "fail"
+                   message:
+                     type: string
+                     example: ".."
+  
+     field_missing:
+        description: "field missing or invalid field value"
+        content:
+           application/json:
+              schema: 
+                 type: object
+                 properties:
+                    status:
+                       type: string
+                       example: "fail"
+                    message:
+                       type: object
+                       example: {}
+  
+  
+     fieldmiss_or_notallowed:
+         description: "Incorrect field value or invalid path parameter"
+         content:
+           application/json:
+             schema:
+                 type: object
+                 properties:
+                   status:
+                      type: string
+                      example: "fail"
+                   message: 
+                         type: 
+                          - object
+                          - string
+                    
+                    
+            
+
+
+
+  
+      
+
+
+       
+
+            
+      
+     
+         
+
+       

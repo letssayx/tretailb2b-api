@@ -1,0 +1,226 @@
+components:
+   schemas:
+     Orders:
+       type: object
+       properties:
+          archive:
+            type: boolean
+            example: true
+          customer_id:
+             type: integer
+             example: 6
+          delivery_amount:
+             type: string
+             example: "500"
+          order_date:
+             type: string
+             example: "2021-04-14"
+          order_type:
+             type: string
+             example: "prepaid"
+          status:
+             type: string
+             example: "ordered"
+          sales_channel:
+             type: string
+             example: "store"
+          payments:
+             type: object
+             properties:
+                date:
+                   type: string
+                   example: "2021-04-15"
+                amount:
+                   type: string
+                   example: "600"
+                ref:
+                   type: string
+                   example: "okwel53#"     
+          shipping:
+             type: object
+             properties:   
+               date:
+                   type: string
+                   example: "2021-04-14"
+               ref:
+                   type: string
+                   example: "ytbweh$$%"
+               notes:
+                   type: string
+                   example: "full cover"
+     LineItems:
+       type: object
+       properties:
+          hsn_code:
+             type: string
+             example: "9863223"
+          item_id:
+             type: integer
+             example: 1848
+          quantity:
+             type: integer
+             example: 0
+          tax_rate:
+             type: string
+             example: 10
+          unit_price:
+             type: integer
+             example: 155
+   requestBodies:
+      OrdersCreate:
+        content:
+          application/json:
+             schema:
+                allOf:     
+                  - $ref: "../main.yaml#/components/schemas/Orders"
+                  - type: object
+                    properties:
+                      lineitems:
+                          type: array
+                          items:
+                            $ref: "../main.yaml#/components/schemas/LineItems"
+      OrdersUpdate:
+          content:
+            application/json:
+               schema:
+                 allOf: 
+                   - $ref: "../main.yaml#/components/schemas/Orders"
+                   - type: object
+                     properties:
+                        dispatch_by:
+                           example: null
+                        id:
+                           type: integer
+                           example: 21
+                        invoice_number:
+                           type: string
+                           example: "456"
+                        order_ref:
+                           type: string
+                           example: "AnIpz7"
+                        parent_order_details:
+                            type: array
+                            example: []
+                        sum_total:
+                            type: integer
+                            example: 500
+                        total_cgst:
+                            type: integer
+                            example: 0
+                        total_igst:
+                             type: integer
+                             example: 0
+                        total_sgst:
+                             type: integer
+                             example: 0
+                        total_taxable_amount:
+                            type: integer
+                            example: 0
+                        lineitems:
+                            type: array
+                            items:
+                              allOf:
+                               - $ref: "../main.yaml#/components/schemas/LineItems"
+                               - type: object
+                                 properties:
+                                    order_item_id:
+                                      example: null
+                                       
+   responses:
+      OrdersResponse:
+        description: operation success
+        content:
+            application/json:
+               schema:
+                 allOf: 
+                   - $ref: "../main.yaml#/components/schemas/Orders"
+                   - type: object
+                     properties:
+                        dispatch_by:
+                           example: null
+                        id:
+                           type: integer
+                           example: 21
+                        invoice_number:
+                           type: string
+                           example: "456"
+                        order_ref:
+                           type: string
+                           example: "AnIpz7"
+                        parent_order_details:
+                            type: array
+                            example: []
+                        sum_total:
+                            type: integer
+                            example: 500
+                        total_cgst:
+                            type: integer
+                            example: 0
+                        total_igst:
+                             type: integer
+                             example: 0
+                        total_sgst:
+                             type: integer
+                             example: 0
+                        total_taxable_amount:
+                            type: integer
+                            example: 0
+                        lineitems:
+                            type: array
+                            items:
+                              allOf:
+                               - $ref: "../main.yaml#/components/schemas/LineItems"
+                               - type: object
+                                 properties:
+                                    order_item_id:
+                                      example: null
+      OrdersResponseArray:
+        description: operation success
+        content:
+            application/json:
+               schema:
+                 type: array
+                 items:
+                   allOf: 
+                     - $ref: "../main.yaml#/components/schemas/Orders"
+                     - type: object
+                       properties:
+                          dispatch_by:
+                             example: null
+                          id:
+                             type: integer
+                             example: 21
+                          invoice_number:
+                             type: string
+                             example: "456"
+                          order_ref:
+                             type: string
+                             example: "AnIpz7"
+                          sum_total:
+                              type: integer
+                              example: 500
+                          total_cgst:
+                              type: integer
+                              example: 0
+                          total_igst:
+                               type: integer
+                               example: 0
+                          total_sgst:
+                               type: integer
+                               example: 0
+                          lineitems:
+                              type: array
+                              items:
+                                allOf:
+                                 - $ref: "../main.yaml#/components/schemas/LineItems"
+                                 - type: object
+                                   properties:
+                                      order_item_id:
+                                         example: null
+                                      item_sku_product:
+                                         type: string
+                                         examle: "NightSuit-MEE-001-S"                     
+                                      thumbnail_image:
+                                          type: string
+                                          example: "https://storage.googleapis.com/tretail-products/ABC Pvt Ltd/4askQP8wBFpI6qu/ERpltTQqjg-thumbnail.jpeg"
+              

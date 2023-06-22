@@ -1,0 +1,96 @@
+params:
+ get:
+   summary: Filter, sort and paginate request
+   decription: Pass filter,range and sort parameters values with get request
+   tags:
+     - Requests
+   parameters:
+         - $ref: "../main.yaml#/components/parameters/Filter"
+         - $ref: "../main.yaml#/components/parameters/Range"
+         - $ref: "../main.yaml#/components/parameters/Sort"
+   responses:
+     "200":
+       description: operation success
+       content:
+         application/json:
+           schema:
+             type: array
+             items:
+               $ref: "../schemas/request.yaml#/components/schemas/Request"
+     "401":
+          $ref: "../main.yaml#/components/responses/Unauthorize"
+
+    
+
+no_params:
+  get: 
+    summary: get request's record by id
+    description: pass request's id in path parameter
+    tags:
+      - Requests
+    parameters:
+       - name: requestid
+         in: path
+         description: id of the request
+         schema:
+            type: integer
+            example: 2
+         required: true
+    responses:
+        "200":
+           description: operation success
+           content:
+             application/json:
+               schema:
+                  $ref: "../schemas/request.yaml#/components/schemas/Request"
+        "405":
+           $ref: "../main.yaml#/components/responses/Not_Allowed"
+        "401":
+           $ref: "../main.yaml#/components/responses/Unauthorize"
+  post:
+    description: "pass id and status with post request"
+    summary: Set request status active
+    tags:
+     - Requests
+    parameters:
+       - name: requestid
+         in: path
+         description: id of the request
+         schema:
+            type: integer
+            example: 2
+         required: true
+    requestBody:
+      content:
+        application/json:
+           schema:
+             properties:
+                request_id:
+                  type: integer
+                  example: 1
+                action:
+                   type: string
+                   example: "accepted"
+    responses:
+       "200":
+         description: Request activate  successful or already acivated
+         content:
+           application/json:
+             schema:
+               properties:
+                 status:
+                   type: string
+                   
+                 message:
+                    type: string
+       "401":
+          $ref: "../main.yaml#/components/responses/Unauthorize"
+       "405":
+          $ref: "../main.yaml#/components/responses/Fieldmiss_or_Notallowed"
+                    
+
+              
+           
+        
+
+

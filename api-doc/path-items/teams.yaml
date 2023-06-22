@@ -1,0 +1,123 @@
+params:
+  post:
+    summary: add teams 
+    description: pass team member information
+    tags:
+      - Teams
+    requestBody:
+       content:
+          application/json:
+             schema:
+                $ref: "../main.yaml#/components/schemas/Teams"
+    responses:
+        "200":
+           description: operation success
+           content:
+              application/json:
+                 schema:
+                    type: object
+                    properties:
+                       status: 
+                          type: string
+                          example: "success"
+                       message:
+                           type: string
+                           example: "Successfully User Added"
+                       id:
+                           type: integer
+                           example: 37
+        "401":
+           $ref: "../main.yaml#/components/responses/Unauthorize"
+  get:
+    summary: filter sort and paginate team
+    description: pass filter sort and range parameters with get request
+    tags:
+      - Teams
+    parameters:
+          - $ref: "../main.yaml#/components/parameters/Filter"
+          - $ref: "../main.yaml#/components/parameters/Range"
+          - $ref: "../main.yaml#/components/parameters/Sort"
+    responses:
+       "200":
+          $ref: "../main.yaml#/components/responses/TeamsResponseArray"
+       "401":
+           $ref: "../main.yaml#/components/responses/Unauthorize"
+
+no_params:
+   post:
+      summary: update teams
+      description: pass team member information
+      tags:
+        - Teams
+      parameters:
+       - name: memberid
+         description: the id of the team member
+         in: path
+         schema:
+           type: integer
+           example: 2
+      requestBody:
+         $ref: "../main.yaml#/components/requestBodies/TeamsUpdate"
+      responses:
+         "200":
+             description: operation success
+             content:
+                application/json:
+                   schema:
+                      type: object
+                      properties:
+                         status: 
+                            type: string
+                            example: "success"
+                         message:
+                             type: string
+                             example: "Successfully Role Updated"
+         "401":
+           $ref: "../main.yaml#/components/responses/Unauthorize"
+                         
+            
+   get:
+      summary: get a team member
+      description: pass team member id in path parameter
+      tags:
+         - Teams
+      parameters:
+       - name: memberid
+         description: the id of the team member
+         in: path
+         schema:
+           type: integer
+           example: 2
+      responses:
+         "200":
+            $ref: "../main.yaml#/components/responses/TeamsResponse"
+         "401":
+           $ref: "../main.yaml#/components/responses/Unauthorize"
+   delete:
+      summary: delete a team member
+      description: pass team member id in path parameter
+      tags:
+         - Teams
+      parameters:
+       - name: memberid
+         description: the id of the team member
+         in: path
+         schema:
+           type: integer
+           example: 2
+      responses:
+         "200":
+             description: operation success
+             content:
+                application/json:
+                   schema:
+                      type: object
+                      properties:
+                         status: 
+                            type: string
+                            example: "success"
+                         message:
+                             type: string
+                             example: "Successfully Role Deleted"
+         "401":
+           $ref: "../main.yaml#/components/responses/Unauthorize"

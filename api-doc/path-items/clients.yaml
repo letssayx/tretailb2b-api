@@ -1,0 +1,156 @@
+params:
+
+     post:
+       summary: create an client
+       description: pass client information
+       tags:
+        - Client
+       requestBody:
+         content:
+           application/json:
+              schema:
+                $ref: "../schemas/client.yaml#/custom/Client"
+       responses:
+            "201":
+             description: operation success
+             content:
+               application/json:
+                 schema:
+                    type: object
+                    properties:
+                       id: 
+                         type: integer
+                         example: 3
+                       status:
+                          example: "success"
+                          type: string
+                       message: 
+                           type: string
+                           example: "Successfully Client Updated"
+            
+            "405":
+               $ref: "../main.yaml#/components/responses/Field_Missing"
+            "401":
+               $ref: "../main.yaml#/components/responses/Unauthorize"
+
+     get:
+       summary: filter sort and paginate client records
+       description: pass filter range and sort parameter with get request
+       tags:
+        - Client
+       parameters:
+         - $ref: "../main.yaml#/components/parameters/Filter"
+         - $ref: "../main.yaml#/components/parameters/Range"
+         - $ref: "../main.yaml#/components/parameters/Sort"
+       responses:
+          "200":
+            description: operation success
+            content:
+              application/json:
+                schema:
+                   type: array
+                   items:
+                     $ref: '../schemas/client.yaml#/custom/getone_response_body'
+          
+          "401":
+               $ref: "../main.yaml#/components/responses/Unauthorize"
+                    
+     delete:
+       summary: delete client by id
+       description: pass client id with path parameter
+       tags:
+        - Client
+       parameters:
+         - name: filter
+           schema:
+             type: string
+             example: '{"id":[7,8]}'
+           description: pass string in query paramtere that represent the array of client ids
+           in: query
+       responses:
+           "405":
+             description: Method not Allowed
+           "401":
+               $ref: "../main.yaml#/components/responses/Unauthorize"
+       
+             
+
+
+no_params:
+     get:
+      summary: get client record by id
+      description: pass id in path parameter
+      tags:
+       - Client
+      parameters:
+        - name: clientid
+          in: path
+          schema:
+            type: integer
+            example: 1
+          description: the id of the client
+      responses:
+         "200":
+           description: sucess operation
+           content:
+             application/json:
+               schema:
+                 $ref: '../schemas/client.yaml#/custom/getone_response_body'
+         "405":
+             $ref: "../main.yaml#/components/responses/Not_Allowed"
+         "401":
+             $ref: "../main.yaml#/components/responses/Unauthorize"
+     delete:
+       summary: delete client by id
+       description: pass client id
+       parameters:
+        - name: clientid
+          in: path
+          schema:
+            type: integer
+            example: 1
+          description: the id of the client
+       tags:
+        - Client
+       responses:
+           "405":
+             description: Method now Allowed
+           "401":
+               $ref: "../main.yaml#/components/responses/Unauthorize"
+            
+
+     post:
+       summary: update client
+       description: pass client id in path parameter
+       tags:
+        - Client
+       parameters:
+        - name: clientid
+          in: path
+          schema:
+            type: integer
+            example: 1
+          description: the id of the client
+       requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '../schemas/client.yaml#/custom/update_request_body'
+       responses:
+          "200":
+            description: operation success
+            content:
+              application/json:
+                schema:
+                   type: object
+                   properties:
+                       status:
+                          example: "success"
+                          type: string
+                       message: 
+                           type: string
+                           example: "Successfully Client Updated"
+          "405":
+              $ref: "../main.yaml#/components/responses/Fieldmiss_or_Notallowed"
+          "401":
+               $ref: "../main.yaml#/components/responses/Unauthorize"

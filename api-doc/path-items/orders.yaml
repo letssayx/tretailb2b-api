@@ -1,0 +1,94 @@
+params:
+  post:
+    summary: add orders
+    description: pass order informations
+    tags:
+      - Orders
+    requestBody:
+      $ref: "../main.yaml#/components/requestBodies/OrdersCreate"
+    responses:
+        "200":
+           description: operation success
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                    status:
+                        type: string
+                        example: "success"
+                    message:
+                        type: string
+                        example: "Successfully Order Created"
+                    id:
+                       type: integer
+                       example: 21
+        "401":
+           $ref: "../main.yaml#/components/responses/Unauthorize"
+  get:
+     summary: filter sort and paginate orders
+     description: pass filter sort and range query parameters with get request
+     tags:
+        - Orders
+     parameters:
+          - $ref: "../main.yaml#/components/parameters/Filter"
+          - $ref: "../main.yaml#/components/parameters/Range"
+          - $ref: "../main.yaml#/components/parameters/Sort"
+     responses:
+        "200":
+           $ref: "../main.yaml#/components/responses/OrdersResponseArray"
+        "401":
+           $ref: "../main.yaml#/components/responses/Unauthorize"
+no_params:
+  post:
+    summary: update orders
+    description: pass order informations
+    tags:
+      - Orders
+    parameters:
+       - name: orderid
+         schema:
+           type: integer
+           example: 21
+         description: the id of the order
+         in: path
+         required: true
+    requestBody:
+       $ref: "../main.yaml#/components/requestBodies/OrdersUpdate"
+    responses:
+       "200":
+          description: operation success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    status:
+                        type: string
+                        example: "success"
+                    message:
+                        type: string
+                        example: "Successfully Order Updated"
+       "401":
+           $ref: "../main.yaml#/components/responses/Unauthorize"
+  get:
+    summary: get an order
+    description: pass order id in path parameter
+    tags:
+      - Orders
+    parameters:
+       - name: orderid
+         schema:
+           type: integer
+           example: 21
+         description: the id of the order
+         in: path
+         required: true
+    responses:
+       "200":
+          $ref: "../main.yaml#/components/responses/OrdersResponse"
+       "401":
+           $ref: "../main.yaml#/components/responses/Unauthorize"
+        
+             
+   

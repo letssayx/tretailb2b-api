@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "tretailprod-379815",
+  "private_key_id": "e527ca074abcb6fe4acb05e46cb302df12059788",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDSOuw6XmDhQxoE\ncFwygWCb/QGJlBqg0vRF6IdRUr6HmQvKMI7ftjUemPj1+KQdmjIwBAFt+JM4A3gV\nWFGrfdqA7s6MEtXDMbbzXFIkGEIgDmJukJm8fuEPM2MimsvtsQ77ItyAhLfJ/TFA\nnXxvWli/rSgUaStAB5423M7M67gUAGVzu+tgzkfUN4wDwHhB5qlGVJV4wMf/VpcW\nBb7GyGvgt0OTg4l/s8wEiL7LgcWgTOms/bbIuRaYj1ArdZcECzYPoUfK9Lu9Ayx9\nQMylhpK1cN6HGxx737z8+OKrspsprxoy1DBh0HUDGYx4uFF/hw6UfsuYlilxRC3X\nQ3FLLdinAgMBAAECggEAaItJtxsA5XR3hzaS+sCw2NGABrkiZtCRDgS86hmSSx82\nKDVuj1xuXQloYPVlM51fENalGVlwaH39JOw3LOdYlh5rk2e4aqmZ17qU1INFuug8\nVcxNz1lvNR5yUZ6WA901XHjxG24kcWuaJw5J95v/n04OLNxB2EURjinPI0OjVjoX\nQHyZYrS8gejgqwB7Uv1cuQ+hrGRGoonW9LtFZEwCB2CZ6vSlbQwBzCzXeyL0/HAl\nxz/qhaf+RIsiohFqVzR4+qezb2i0PJkcYEyi04aA1ut02q8pYP6IYxyd9c2V8Tx5\nSF468+FdE2fMakrGa2Z/k4eY4zlMYbeclFJaEHTh2QKBgQDy0LnGtm3eSpZPNNZs\ntMSkoYDnn2EDpE60TiF/ohe5sSXYj4qy+JvUQLCht62U4cvQBWi8p942wKB5gDJg\npn9EDAVAtNUZvWOqahYhupltOCpBj3prYVdkBfLss8/bFUXLghzD+bbkm0qIiMdZ\n0pu5w86QeBqFv/avYpzK26I7CQKBgQDdpT6KrTofAv3C9S7QQvjOEUxjxZpzroe6\nEkv4u+qa1muI5EnF/8l4OJzCdTVaPEA1PAhyteyPhXmv3AnA3l72REBOtzvEuSwe\nHLnmSe88qI8K27v60XErDxNOVJQyqKgMqHb0XWodMYD2DoL6us2/1wuzIkG6LHJF\n3U7rAQNyLwKBgAv0wSEKvJA0hgAybth9ci1VEn7VNzaxsXppWnbpaVeoZF+sebzk\nRvAFm2zrGW36TEna6lRXw7ZYd85jxJdDu4KDQQL1pISW8cBjZuGUSZe6K0J9KR7+\ndQokzNhg5jw4aO5jYr03n4zUJLBiY8aFe0uDW7l7YHrzf9cU+Pl4JR3ZAoGACYwf\nqIuTsFhJpAc5sADihMXb+4Q8hfUjpZE6MomtrmPEGA51WxEMlaAiqIGx/aQQw/pF\nBuPtP7VpK3kX9nXds0/3USy1Z2DulJF6NIBEzOEZ4Ebczw4MiOVKWJpuE8yOCJWN\nIjOP6ZgDTRYM8E3xpOzXdSzpleJqPbYtuxO9GUMCgYBIjdocjBe81vpneVRYCoNZ\n698gCo7P50b9+V9qVV6tQAHK8Gsml5HbNztY8ghArT4jsXK1iioR+hpaNXHVMvew\n0739DEHJxogiK5Y+hEzjZ/GClt+ZkzzVJ0Mvd6AknRBVOpOwW1j361XrTmtyA8pF\nntsvboSo5udsZD/Y2WKyKA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "tretailprod-gcp-access@tretailprod-379815.iam.gserviceaccount.com",
+  "client_id": "111950530180694383272",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/tretailprod-gcp-access%40tretailprod-379815.iam.gserviceaccount.com"
+}

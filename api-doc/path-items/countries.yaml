@@ -1,0 +1,112 @@
+no_params:
+  get:
+    summary: get country by id
+    description: pass country id in path parameter
+    tags:
+     - Countries
+    parameters:
+       - name: countryid
+         in: path
+         description: id of the country
+         schema:
+            type: integer
+            example: 2
+         required: true
+    responses:
+      "200":
+         $ref: "../main.yaml#/components/responses/OptionsResponse"
+      "401":
+          $ref: "../main.yaml#/components/responses/Unauthorize"
+  
+  post:
+    description: pass country data and with the id in path paramter
+    summary: update country
+    tags: 
+      - Countries
+    parameters:
+       - name: countryid
+         in: path
+         description: id of the country
+         schema:
+            type: integer
+            example: 2
+         required: true
+    requestBody:         
+         $ref: "../main.yaml#/components/requestBodies/OptionsRequest"
+    responses:
+      "200":
+          $ref: "../main.yaml#/components/responses/OptionsStatusResponse"
+      "401":
+          $ref: "../main.yaml#/components/responses/Unauthorize"
+  delete:
+    summary: delete a country
+    description: pass the id of the country
+    tags:
+       - Countries
+    parameters:
+       - name: countryid
+         in: path
+         description: id of the country
+         schema:
+            type: integer
+            example: 2
+         required: true
+    responses:
+      "200":
+        $ref: "../main.yaml#/components/responses/OptionsStatusResponse"
+      "401":
+          $ref: "../main.yaml#/components/responses/Unauthorize"
+       
+      
+        
+    
+    
+       
+    
+
+
+params:
+   post:
+     summary: add country
+     description: pass country data with post request
+     tags:
+      - Countries
+     requestBody:  
+       content:
+         application/json:
+           schema:
+             type: object
+             properties:
+               name:
+                type: string
+                example: "India"
+     responses:
+        "201":
+           $ref: "../main.yaml#/components/responses/OptionsResponse"
+        "401":
+          $ref: "../main.yaml#/components/responses/Unauthorize"    
+    
+
+   get:
+     summary: Filter sort and paginate country
+     description: pass filter range and sort parameter with get request
+     tags:
+      - Countries
+     parameters:
+         - $ref: "../main.yaml#/components/parameters/Filter"
+         - $ref: "../main.yaml#/components/parameters/Range"
+         - $ref: "../main.yaml#/components/parameters/Sort"
+     responses:
+         "200":
+           content:
+             application/json:
+               schema:
+                 type: array
+                 items:
+                      $ref: "../main.yaml#/components/schemas/Options"
+      
+
+         "401":
+          $ref: "../main.yaml#/components/responses/Unauthorize"
+
+

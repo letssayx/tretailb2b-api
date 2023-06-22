@@ -1,0 +1,50 @@
+components:
+  schemas:
+     Permissions:
+        type: object
+        properties:
+           logs:
+             type: string
+             example: "POST"
+           items:
+             type: string
+             example: "POST"
+           tasks:
+             type: string
+             example: "POST"
+           teams:
+             type: string
+             example: "POST"
+           brands:
+             type: string
+             example: "POST"
+           orders:
+             type: string
+             example: "POST"
+           returns:
+             type: string
+             example: "POST"
+           products:
+             type: string
+             example: "POST"
+           settings:
+             type: string
+             example: "POST"
+           countries:
+             type: string
+             example: "POST"
+           customers:
+             type: string
+             example: "POST"
+           categories:
+             type: string
+             example: "POST"
+           transactions:
+              type: string
+              example: "POST"
+           manufacturers:
+              type: string
+              example: "POST"
+           subcategories:
+              type: string
+              example: "POST"

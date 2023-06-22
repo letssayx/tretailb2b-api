@@ -1,0 +1,12 @@
+components:
+  schemas:
+    Profile:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Tretailb2b"
+        email:
+          type: string
+          example: "tretailb2b@gmail.com"
+    

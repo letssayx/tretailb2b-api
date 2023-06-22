@@ -1,0 +1,157 @@
+components:
+   schemas:
+     Products:
+       type: object
+       properties:
+          active:
+             type: boolean
+             example: true
+          asin:
+             type: string
+             example: "B08Y2P6C8H"
+          brand_id:
+             type: integer
+             example: 3
+          category_id:
+             type: integer
+             example: 4
+          country_id:
+             type: integer
+             example: 2
+          description:
+             type: string
+             example: "Boring Dress by Meerkat. Made from 100% thick Cotton Fabric"
+          hsn_code:
+            type: string
+            example: "985565699"
+          launch_date:
+              type: string
+              format: date
+              example: "2017-07-21"
+          manufacturer_id:
+             type: integer
+             example: 5
+          name:
+             type: string
+             example: "Meerkat Bottom Colour Navy"
+          pictures:
+             type: array
+             items:
+               type: object
+               properties:
+                 src:
+                   type: string
+                   format: byte
+                   example: "data:image/jpeg;base64,/9j/4AAQS...."
+                 title: 
+                   type: string
+                   example: "BkfvOZoJqz.jpeg"
+          sku:
+             type: string
+             example: "MEE-SS-0089"
+          subcategory_id:
+             type: integer
+             example: 5
+          tax_rate:
+             type: string
+             example: "10"
+   responses:
+     ProductGet:
+       type: object
+       properties:
+          active:
+             type: boolean
+             example: true
+          asin:
+             type: string
+             example: "B08Y2P6C8H"
+          brand_id:
+             type: integer
+             example: 3
+          category_id:
+             type: integer
+             example: 4
+          country_id:
+             type: integer
+             example: 2
+          description:
+             type: string
+             example: "Boring Dress by Meerkat. Made from 100% thick Cotton Fabric"
+          hsn_code:
+            type: string
+            example: "985565699"
+          launch_date:
+              type: string
+              format: date
+              example: "2017-07-21"
+          manufacturer_id:
+             type: integer
+             example: 5
+          name:
+             type: string
+             example: "Meerkat Bottom Colour Navy"
+          pictures:
+             type: array
+             items:
+               type: object
+               properties:
+                 src:
+                   type: string
+                   format: byte
+                   example: "https://storage.googleapis.com/tretail-products/ABC Pvt Ltd/PBjO4L6AbZBD7fu/g3ji40fN33-general.jpeg"
+                 title: 
+                   type: string
+                   example: "BkfvOZoJqz.jpeg"
+          sku:
+             type: string
+             example: "MEE-SS-0089"
+          subcategory_id:
+             type: integer
+             example: 5
+          tax_rate:
+             type: string
+             example: "10"
+          id:
+              type: integer
+              example: 298
+          status:
+             type: string
+             example: "success"
+          message:
+             type: string
+             example: "Successfully get product"
+       
+   requestBodies:
+       ProductsUpdate:
+         content:
+           application/json:
+              schema:
+                 allOf:
+                   - $ref: "../main.yaml#/components/schemas/Products"
+                   - type: object
+                     properties:
+                       pictures_old:
+                           type: array
+                           items:
+                                type: object
+                                properties:
+                                    src:
+                                        type: string
+                                        format: byte
+                                        example: "https://storage.googleapis.com/tretail-products/ABC Pvt Ltd/PBjO4L6AbZBD7fu/g3ji40fN33-general.jpeg"
+                                    title: 
+                                        type: string
+                                        example: "BkfvOZoJqz.jpeg"
+                       id:
+                           type: integer
+                           example: 298
+                       status:
+                          type: string
+                          example: "success"
+                       message:
+                          type: string
+                          example: "Successfully get product"
+                      
+                             
+                 
+          
